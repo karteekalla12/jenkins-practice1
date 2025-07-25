@@ -1,1 +1,2 @@
-print("hi karteek,how are you")
+print("hi karteek, how are you")
+print(12345)
