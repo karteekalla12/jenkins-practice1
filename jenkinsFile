@@ -10,14 +10,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                echo "📦 Installing dependencies..."
-                sh '${PIP} install --upgrade pip'
-                sh '${PIP} install -r requirements.txt'
-            }
-        }
-
         stage('Build') {
             steps {
                 echo "🚀 Running your Python script..."
