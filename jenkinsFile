@@ -6,7 +6,7 @@ pipeline {
         stage('Set Up Python Virtual Environment') {
             steps {
                 echo "🐍 Creating virtual environment..."
-                sh 'sudo apt install python3.12'
+                sh 'sudo apt -m install python3.12'
             }
         }
 
