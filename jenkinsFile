@@ -1,21 +1,27 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.11-slim'
+        }
+    }
 
     stages {
 
         stage('Build') {
             steps {
-                echo "🚀 Running your Python script..."
-                sh '${PYTHON} practice.py'
+                echo '🚀 Running practice.py...'
+                sh 'python practice.py'
             }
         }
 
         stage('Test') {
             steps {
-                echo "🧪 Running tests with pytest..."
-                sh '${PIP} install pytest pytest-html'
-                sh '${PYTHON} -m pytest tests/ --html=report.html || true'
+                echo '🧪 Running pytest tests...'
+                sh '''
+                    pip install pytest
+                    pytest tests/ || true
+                '''
             }
         }
     }
-}    
+}
