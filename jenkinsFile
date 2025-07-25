@@ -3,21 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Set Up Python Virtual Environment') {
-            steps {
-                echo "🐍 Creating virtual environment..."
-                sh 'python3 -m venv venv'
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                echo "📦 Installing dependencies..."
-                sh '${PIP} install --upgrade pip'
-                sh '${PIP} install -r requirements.txt'
-            }
-        }
-
         stage('Build') {
             steps {
                 echo "🚀 Running your Python script..."
