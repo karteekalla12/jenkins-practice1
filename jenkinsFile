@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                // Assuming python is installed and file is named practice.py
+                sh 'python3 practice.py'
+            }
+        }
+    }
+}
