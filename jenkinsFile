@@ -5,12 +5,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running Python application...'
+                // Run your main Python script (replace practice.py if needed)
                 sh 'python3 practice.py'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Running Python tests...'
+                // Discover and run tests from 'tests/' folder
                 sh 'python3 -m unittest discover -s tests'
             }
         }
