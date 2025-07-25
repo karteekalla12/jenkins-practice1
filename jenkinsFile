@@ -12,5 +12,7 @@ pipeline {
             steps {
                 echo 'Running Python tests...'
                 sh 'python3 -m unittest discover -s tests'
+            }
+        }
     }
 }
