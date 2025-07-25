@@ -1,6 +1,5 @@
 pipeline {
-    agent docker.io
-
+    agent docker
     stages {
         stage('Build') {
             steps {
@@ -9,7 +8,7 @@ pipeline {
                 sh 'python3 practice.py'
             }
         }
-
+        
         stage('Test') {
             steps {
                 echo 'Running Python tests...'
