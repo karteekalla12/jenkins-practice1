@@ -4,9 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Assuming python is installed and file is named practice.py
+                echo 'Running Python application...'
                 sh 'python3 practice.py'
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Running Python tests...'
+                sh 'python3 -m unittest discover -s tests'
     }
 }
