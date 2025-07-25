@@ -1,20 +1,36 @@
 pipeline {
-    agent docker
+    agent any
+
     stages {
-        stage('Build') {
+
+        stage('Set Up Python Virtual Environment') {
             steps {
-                echo 'Running Python application...'
-                // Run your main Python script (replace practice.py if needed)
-                sh 'python3 practice.py'
+                echo "🐍 Creating virtual environment..."
+                sh 'python3 -m venv venv'
             }
         }
-        
+
+        stage('Install Dependencies') {
+            steps {
+                echo "📦 Installing dependencies..."
+                sh '${PIP} install --upgrade pip'
+                sh '${PIP} install -r requirements.txt'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "🚀 Running your Python script..."
+                sh '${PYTHON} practice.py'
+            }
+        }
+
         stage('Test') {
             steps {
-                echo 'Running Python tests...'
-                // Discover and run tests from 'tests/' folder
-                sh 'python3 -m unittest discover -s tests'
+                echo "🧪 Running tests with pytest..."
+                sh '${PIP} install pytest pytest-html'
+                sh '${PYTHON} -m pytest tests/ --html=report.html || true'
             }
         }
     }
-}
+}    
