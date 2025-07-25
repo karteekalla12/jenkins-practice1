@@ -6,7 +6,15 @@ pipeline {
         stage('Set Up Python Virtual Environment') {
             steps {
                 echo "🐍 Creating virtual environment..."
-                sh 'sudo apt -S install python3.12'
+                sh 'python3 -m venv venv'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo "📦 Installing dependencies..."
+                sh '${PIP} install --upgrade pip'
+                sh '${PIP} install -r requirements.txt'
             }
         }
 
